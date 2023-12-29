@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "User List";
+}
+<h1>@ViewData["Title"]</h1>
+@model IEnumerable<Fetch_API.Models.PersonModel>
+<table class="table table-bordered table-hover text-center">
+    <thead>
+        <tr>
+            <th scope="col">PersonID</th>
+            <th scope="col">PName</th>
+            <th scope="col">Email</th>
+            <th scope="col">Contact</th>
+        </tr>
+    </thead>
+
+<tbody id="sample_2">
+    @foreach (var dr in Model)
+    {
+    <tr>
+        <th scope="row">@dr.PersonID</th>
+        <td>@dr.Pname</td>
+        <td>@dr.Email</td>
+        <td>@dr.Contact</td>
+        
+    </tr>
+    }
+
+</tbody>
+</table>
