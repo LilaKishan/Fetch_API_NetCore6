@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "AddPerson";
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+@model Fetch_API.Models.PersonModel
+
+<h1>Add/Edit person</h1>
+
+<div class="container-fluid border border-dark p-4">
+    <form class="row">
+        @Html.HiddenFor(x=>x.PersonID)
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="col">
+            <lable class="form-label">PersonID</lable>
+            <input type="text" class="form-control" asp-for="PersonID" />
+            <span asp-validation-for="PersonID" class="text-danger"></span>
+        </div>
+        
+        <div class="col">
+            <lable class="form-label">Person Name</lable>
+            <input type="text" class="form-control" asp-for="Pname" />
+            <span asp-validation-for="Pname" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <lable class="form-label">Email</lable>
+
+            <input type="text" class="form-control" asp-for="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <lable class="form-label">Contact</lable>
+
+            <input type="text" class="form-control" asp-for="Email" />
+            <span asp-validation-for="Contact" class="text-danger"></span>
+        </div>
+        <div class="col-12 my-2">
+            <button type="submit" class="btn btn-primary"  asp-controller="Person" asp-action="Get">Back</button>
+        </div>
+    </form>
+</div>

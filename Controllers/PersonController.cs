@@ -18,6 +18,8 @@ namespace Fetch_API.Controllers
             _client = new HttpClient();
             _client.BaseAddress = baseaddress;
         }
+
+        #region GET
         [HttpGet]
         public IActionResult Get()
         {
@@ -37,6 +39,38 @@ namespace Fetch_API.Controllers
             }
             return View("PersonList", persons);
         }
+        #endregion
+
+
+        public IActionResult AddPerson()
+        {
+            return View();
+        }
+        #region GetByID
+
+        [HttpGet]
+        public IActionResult GetByID(int id)
+        {
+            PersonModel person = new PersonModel();
+            HttpResponseMessage response = _client.GetAsync(baseaddress+"/"+id).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+
+                dynamic jsonobject = JsonConvert.DeserializeObject(data);
+
+                var dataOfObject = jsonobject.data;
+                var extractDataJson = JsonConvert.SerializeObject(dataOfObject);
+
+                person = JsonConvert.DeserializeObject<PersonModel>(extractDataJson);
+            }
+            return View("AddPerson", person);
+        }
+        #endregion
+
+        
+
 
     }
 }

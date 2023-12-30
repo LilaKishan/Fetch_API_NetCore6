@@ -3,6 +3,13 @@
 }
 <h1>@ViewData["Title"]</h1>
 @model IEnumerable<Fetch_API.Models.PersonModel>
+
+<div class="add-button mr-auto my-md-2">
+    <a asp-area="" asp-action="AddPerson" asp-controller="Person">
+        <input type="button" class="btn btn-success" value="Add New Record" />
+    </a>
+</div>
+
 <table class="table table-bordered table-hover text-center">
     <thead>
         <tr>
@@ -10,20 +17,21 @@
             <th scope="col">PName</th>
             <th scope="col">Email</th>
             <th scope="col">Contact</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
 
-<tbody id="sample_2">
-    @foreach (var dr in Model)
-    {
-    <tr>
-        <th scope="row">@dr.PersonID</th>
-        <td>@dr.Pname</td>
-        <td>@dr.Email</td>
-        <td>@dr.Contact</td>
-        
-    </tr>
-    }
+    <tbody id="sample_2">
+        @foreach (var dr in Model)
+        {
+            <tr>
+                <th scope="row">@dr.PersonID</th>
+                <td>@dr.Pname</td>
+                <td>@dr.Email</td>
+                <td>@dr.Contact</td>
+                <td>@Html.ActionLink("GetByID","GetByID",new{id=dr.PersonID})</td>
+            </tr>
+        }
 
-</tbody>
+    </tbody>
 </table>
