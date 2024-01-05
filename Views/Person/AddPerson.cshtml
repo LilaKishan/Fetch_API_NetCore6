@@ -7,34 +7,41 @@
 <h1>Add/Edit person</h1>
 
 <div class="container-fluid border border-dark p-4">
-    <form class="row">
+    <form class="row" asp-action="Save">
         @Html.HiddenFor(x=>x.PersonID)
         <div asp-validation-summary="All" class="text-danger"></div>
+        @* <div class="col">
+        <label class="form-label">PersonID</label>
+        <input type="text" class="form-control" asp-for="PersonID" />
+        <span asp-validation-for="PersonID" class="text-danger"></span>
+        </div>*@
+
         <div class="col">
-            <lable class="form-label">PersonID</lable>
-            <input type="text" class="form-control" asp-for="PersonID" />
-            <span asp-validation-for="PersonID" class="text-danger"></span>
-        </div>
-        
-        <div class="col">
-            <lable class="form-label">Person Name</lable>
+            <label class="form-label" asp-for="Pname">Person Name</label>
             <input type="text" class="form-control" asp-for="Pname" />
             <span asp-validation-for="Pname" class="text-danger"></span>
         </div>
         <div class="col">
-            <lable class="form-label">Email</lable>
-
+            <label asp-for="Email" class="form-label">Email</label>
             <input type="text" class="form-control" asp-for="Email" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="col">
-            <lable class="form-label">Contact</lable>
-
-            <input type="text" class="form-control" asp-for="Email" />
+            <label asp-for="Contact" class="form-label">Contact</label>
+            <input type="text" class="form-control" asp-for="Contact" />
             <span asp-validation-for="Contact" class="text-danger"></span>
         </div>
         <div class="col-12 my-2">
-            <button type="submit" class="btn btn-primary"  asp-controller="Person" asp-action="Get">Back</button>
+            <button class="btn btn-warning" asp-action="Save">Save</button>
+            <button class="btn btn-info" asp-action="Get">Back</button>
         </div>
     </form>
 </div>
+
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+            }
